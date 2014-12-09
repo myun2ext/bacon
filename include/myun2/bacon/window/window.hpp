@@ -12,21 +12,24 @@ namespace myun2
 		{
 		private:
 			HWND hWnd;
+			DWORD m_dwStyle;
+			DWORD m_dwExStyle;
 		public:
-			window() : hWnd(NULL) {}
+			window() : hWnd(NULL) { setup_standard_window_styles(); }
 			window(const window_class& cls, const char* title, unsigned int width, unsigned int height,
 				unsigned int x = CW_USEDEFAULT, unsigned int y = CW_USEDEFAULT, bool hidden=false)
 			{
+				setup_standard_window_styles();
 				start(cls, title, width, height, x, y, hidden);
 			}
 			start(const window_class& cls, const char* title, unsigned int width, unsigned int height,
 				unsigned int x = CW_USEDEFAULT, unsigned int y = CW_USEDEFAULT, bool hidden=false)
 			{
 				hWnd = ::CreateWindowEx(
-					WS_EX_APPWINDOW,
+					m_dwExStyle,
 					cls.get_class_name(),
 					title,
-					WS_OVERLAPPEDWINDOW,
+					m_dwStyle,
 					x, y, width, height,
 					NULL,
 					NULL,
@@ -42,6 +45,13 @@ namespace myun2
 			}
 
 			HWND get_window_handle() const { return hWnd; }
+			void set_style(DWORD style) { m_dwStyle = style; }
+			void set_ex_style(DWORD style) { m_dwExStyle = style; }
+			void setup_standard_window_styles()
+			{
+				m_dwStyle = WS_OVERLAPPEDWINDOW;
+				m_dwExStyle = WS_EX_APPWINDOW;
+			}
 		};
 	}
 }
