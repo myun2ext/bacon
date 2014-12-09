@@ -2,6 +2,7 @@
 #define __github_com_myun2__bacon__window_class_HPP__
 
 #include <windows.h>
+#include <exception>
 #include <string>
 
 namespace myun2
@@ -12,7 +13,27 @@ namespace myun2
 		{
 		public:
 			typedef ::WNDCLASSEX WindowClassType;
-			class register_failed {};
+
+			struct register_failed : ::std::exception
+			{
+			protected:
+				const DWORD dwLastError;
+				mutable ::std::string message;
+			public:
+				register_failed() : dwLastError(GetLastError()) {}
+				virtual ~register_failed() throw() {}
+				const char* what() const throw()
+				{
+					LPSTR localBuffer = NULL;
+					size_t size = FormatMessageA(
+						FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+						NULL, dwLastError, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPSTR)&localBuffer, 0, NULL);
+
+					message = ::std::string(localBuffer, size);
+					LocalFree(localBuffer);
+					return message.c_str();
+				}
+			};
 		protected:
 			WindowClassType internal;
 			ATOM m_atom;
