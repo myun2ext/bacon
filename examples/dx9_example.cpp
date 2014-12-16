@@ -1,20 +1,21 @@
-#include "myun2/bacon/window.hpp"
-#include "myun2/bacon/driver_params.hpp"
 #include "myun2/bacon/dx9.hpp"
+#include "myun2/bacon/app_base.hpp"
 #include <stdio.h>
 
 using namespace myun2::bacon;
 
+class app : public app_base<driver_dx9>
+{
+private:
+	typedef app_base<driver_dx9> base;
+public:
+	app() : base("Bacon", 640, 480) {}
+};
+
 int main()
 {
 	try {
-		window_class wc("Example Window Class", window_proc<window_proc_base>);
-		wc.register_class();
-		window w(wc, "Title", 640, 480);
-
-		driver_dx9 drv(driver_params(driver_window_params(w, 640, 480)));
-		message_loop lp;
-		lp.run();
+		app a;
 	}
 	catch(::std::exception &e)
 	{
