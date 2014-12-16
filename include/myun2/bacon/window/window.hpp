@@ -3,6 +3,7 @@
 
 #include <windows.h>
 #include "myun2/bacon/window/window_class.hpp"
+#include "myun2/bacon/window/window_proc.hpp"
 
 namespace myun2
 {

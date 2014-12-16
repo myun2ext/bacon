@@ -7,10 +7,10 @@ namespace myun2
 {
 	namespace bacon
 	{
-		class window_proc
+		class window_proc_base
 		{
 		public:
-			LRESULT proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+			LRESULT call(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			{
 				switch (uMsg)
 				{
@@ -25,6 +25,13 @@ namespace myun2
 				return 0;
 			}
 		};
+
+		template <typename _WindowProcClass>
+		LRESULT CALLBACK window_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+		{
+			static _WindowProcClass pc;
+			pc.call(hWnd, uMsg, wParam, lParam);
+		}
 	}
 }
 

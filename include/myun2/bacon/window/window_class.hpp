@@ -39,15 +39,15 @@ namespace myun2
 			ATOM m_atom;
 		public:
 			void clear() {
-				unregister(NULL);
+				//unregister(NULL);
 				ZeroMemory(&internal, sizeof(internal));
 				internal.cbSize = sizeof(internal);
 			}
 
-			window_class() : m_atom(0) { clear(); }
-			window_class(const char* name) : m_atom(0) {
-				internal.lpszClassName = name;
+			window_class(const char* name, WNDPROC wndproc) : m_atom(0) {
 				clear();
+				internal.lpszClassName = name;
+				internal.lpfnWndProc = wndproc;
 			}
 
 			operator WNDCLASSEX& () { return internal; }

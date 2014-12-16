@@ -6,10 +6,10 @@ using namespace myun2::bacon;
 int main()
 {
 	try {
-		window_class wc;
+		window_class wc("Example Window Class", window_proc<window_proc_base>);
 		wc.register_class();
-		window win(wc, "Title", 230, 120);
-		Sleep(1000);
+		window win(wc, "Title", 640, 480);
+		Sleep(3000);
 	}
 	catch(::std::exception &e)
 	{
