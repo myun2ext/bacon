@@ -9,7 +9,8 @@ int main()
 		window_class wc("Example Window Class", window_proc<window_proc_base>);
 		wc.register_class();
 		window win(wc, "Title", 640, 480);
-		Sleep(3000);
+		message_loop lp;
+		lp.run();
 	}
 	catch(::std::exception &e)
 	{

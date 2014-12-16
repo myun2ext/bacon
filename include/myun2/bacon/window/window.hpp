@@ -4,6 +4,7 @@
 #include <windows.h>
 #include "myun2/bacon/window/window_class.hpp"
 #include "myun2/bacon/window/window_proc.hpp"
+#include "myun2/bacon/window/message_loop.hpp"
 
 namespace myun2
 {
