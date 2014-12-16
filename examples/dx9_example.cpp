@@ -4,18 +4,18 @@
 
 using namespace myun2::bacon;
 
-class app : public app_base<driver_dx9>
+class example_app : public app_base<driver_dx9>
 {
 private:
 	typedef app_base<driver_dx9> base;
 public:
-	app() : base("Bacon", 640, 480) {}
+	example_app() : base("Bacon", 640, 480) {}
 };
 
 int main()
 {
 	try {
-		app a;
+		example_app a;
 	}
 	catch(::std::exception &e)
 	{

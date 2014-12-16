@@ -49,9 +49,11 @@ namespace myun2
 					inner = NULL;
 				}
 			}
+			void begin_scene() { inner->BeginScene(); }
+			void end_scene() { inner->EndScene(); }
+			void present() { inner->Present( NULL, NULL, NULL, NULL ); }
 		};
 	}
 }
-
 
 #endif//__github_com_myun2__bacon__dx9__driver_HPP__
