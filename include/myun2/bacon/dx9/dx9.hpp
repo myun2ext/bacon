@@ -8,14 +8,13 @@ namespace myun2
 {
 	namespace bacon
 	{
-		template <typename _>
-		class dx9_
+		class dx9
 		{
 		protected:
 			IDirect3D9* d3d;
 		public:
-			dx9_(){ start(); }
-			virtual~ dx9_(){ end(); }
+			dx9(){ start(); }
+			virtual~ dx9(){ end(); }
 			void start() {
 				d3d = ::Direct3DCreate9(D3D_SDK_VERSION);
 			}
@@ -26,7 +25,11 @@ namespace myun2
 				}
 			}
 		};
-		dx9_<void> dx9;
+
+		dx9* get_dx9() {
+			static dx9 dx;
+			return &dx;
+		}
 	}
 }
 
