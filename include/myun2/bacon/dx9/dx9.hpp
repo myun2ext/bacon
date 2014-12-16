@@ -24,11 +24,17 @@ namespace myun2
 					d3d = NULL;
 				}
 			}
+			operator IDirect3D9*() { return d3d; }
+			IDirect3D9* operator ->() { return d3d; }
+			IDirect3D9* get_direct3d() { return d3d; }
 		};
 
-		dx9* get_dx9() {
+		dx9& get_dx9() {
 			static dx9 dx;
-			return &dx;
+			return dx;
+		}
+		IDirect3D9* get_d3d9() {
+			return get_dx9().get_direct3d();
 		}
 	}
 }

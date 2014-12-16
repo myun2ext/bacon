@@ -46,6 +46,7 @@ namespace myun2
 				UpdateWindow(hWnd);
 			}
 
+			operator HWND() { return hWnd; }
 			HWND get_window_handle() const { return hWnd; }
 			void set_style(DWORD style) { m_dwStyle = style; }
 			void set_ex_style(DWORD style) { m_dwExStyle = style; }

@@ -22,7 +22,7 @@ namespace myun2
 			unsigned int adapter_no;
 
 			driver_params(const driver_window_params& _wndparams) :
-				wndparams(_wndparams) {}
+				wndparams(_wndparams), adapter_no(0) {}
 		};
 	}
 }
