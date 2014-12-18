@@ -49,9 +49,10 @@ namespace myun2
 					inner = NULL;
 				}
 			}
-			void begin_scene() { inner->BeginScene(); }
+			void begin() { inner->BeginScene(); }
 			void end_scene() { inner->EndScene(); }
-			void present() { inner->Present( NULL, NULL, NULL, NULL ); }
+			void inner_present() { inner->Present(NULL, NULL, NULL, NULL); }
+			void present() { end_scene(); inner_present(); }
 		};
 	}
 }

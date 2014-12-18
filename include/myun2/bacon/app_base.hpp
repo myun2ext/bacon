@@ -17,9 +17,8 @@ namespace myun2
 			_Driver drv;
 			void on_frame()
 			{
+				drv.begin();
 				//drv.clear(D3DCOLOR_XRGB(0,0,255));
-				drv.begin_scene();
-				drv.end_scene();
 				drv.present();
 				Sleep(100);
 			}
