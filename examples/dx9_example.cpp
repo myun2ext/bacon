@@ -1,6 +1,5 @@
 #include "myun2/bacon/dx9.hpp"
 #include "myun2/bacon/app_base.hpp"
-#include <stdio.h>
 
 using namespace myun2::bacon;
 
@@ -12,13 +11,16 @@ public:
 	example_app() : base("Bacon", 640, 480) {}
 };
 
-int main()
+
+int WINAPI WinMain(
+	HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	try {
 		example_app a;
 	}
 	catch(::std::exception &e)
 	{
-		printf("%s", e.what());
+		MessageBox(NULL, e.what(), "Error", 0);
 	}
+	return 0;
 }

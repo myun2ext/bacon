@@ -42,7 +42,7 @@ namespace myun2
 			}
 
 			void show() {
-				ShowWindow(hWnd, SW_SHOWDEFAULT);
+				ShowWindow(hWnd, SW_SHOWNORMAL);
 				UpdateWindow(hWnd);
 			}
 

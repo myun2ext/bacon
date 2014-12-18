@@ -26,7 +26,7 @@ namespace myun2
 			static window_class wndclass() {
 				window_class wc("Bacon Window Class", window_proc<window_proc_base>);
 				wc.register_class();
-				wc;
+				return wc;
 			}
 		public:
 			app_base(const char* app_title, unsigned int height, unsigned int width, bool is_fullscreen=false)
