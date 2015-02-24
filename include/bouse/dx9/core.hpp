@@ -12,7 +12,7 @@ namespace myun2
 		{
 			struct core {
 				IDirect3D9* ptr;
-				core(){ ptr = ::Direct3DCreate9(D3D_SDK_VERSION) }
+				core() { ptr = ::Direct3DCreate9(D3D_SDK_VERSION); }
 				virtual~ core(){ ptr->Release(); }
 				IDirect3D9* get () { return ptr; }
 			};
