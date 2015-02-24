@@ -1,11 +1,11 @@
-#ifndef __github_com_myun2__bacon__window_proc_HPP__
-#define __github_com_myun2__bacon__window_proc_HPP__
+#ifndef __github_com_myun2__bouse__window_proc_HPP__
+#define __github_com_myun2__bouse__window_proc_HPP__
 
 #include <windows.h>
 
 namespace myun2
 {
-	namespace bacon
+	namespace bouse
 	{
 		class window_proc_base
 		{
@@ -35,4 +35,4 @@ namespace myun2
 	}
 }
 
-#endif//__github_com_myun2__bacon__window_proc_HPP__
+#endif//__github_com_myun2__bouse__window_proc_HPP__

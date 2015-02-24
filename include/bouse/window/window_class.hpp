@@ -1,72 +1,48 @@
-#ifndef __github_com_myun2__bacon__window_class_HPP__
-#define __github_com_myun2__bacon__window_class_HPP__
+#ifndef __github_com_myun2__bouse__window_class_HPP__
+#define __github_com_myun2__bouse__window_class_HPP__
 
 #include <windows.h>
-#include <exception>
-#include <string>
 
 namespace myun2
 {
-	namespace bacon
+	namespace bouse
 	{
 		class window_class
 		{
 		public:
-			typedef ::WNDCLASSEX WindowClassType;
-
-			struct register_failed : ::std::exception
-			{
-			protected:
-				const DWORD dwLastError;
-				mutable ::std::string message;
-			public:
-				register_failed() : dwLastError(GetLastError()) {}
-				virtual ~register_failed() throw() {}
-				const char* what() const throw()
-				{
-					LPSTR localBuffer = NULL;
-					size_t size = FormatMessageA(
-						FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-						NULL, dwLastError, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPSTR)&localBuffer, 0, NULL);
-
-					message = ::std::string(localBuffer, size);
-					LocalFree(localBuffer);
-					return message.c_str();
-				}
-			};
+			class register_failed {};
 		protected:
-			WindowClassType internal;
+			WNDCLASSEX wndcls;
 			ATOM m_atom;
 		public:
 			void clear() {
 				//unregister(NULL);
-				ZeroMemory(&internal, sizeof(internal));
-				internal.cbSize = sizeof(internal);
+				ZeroMemory(&wndcls, sizeof(wndcls));
+				wndcls.cbSize = sizeof(wndcls);
 			}
-
 			window_class(const char* name, WNDPROC wndproc) : m_atom(0) {
 				clear();
-				internal.lpszClassName = name;
-				internal.lpfnWndProc = wndproc;
+				wndcls.lpszClassName = name;
+				wndcls.lpfnWndProc = wndproc;
 			}
 
-			operator WNDCLASSEX& () { return internal; }
-			operator const WNDCLASSEX& () const { return internal; }
-			operator WNDCLASSEX* () { return &internal; }
-			operator const WNDCLASSEX* () const { return &internal; }
+			operator WNDCLASSEX& () { return wndcls; }
+			operator const WNDCLASSEX& () const { return wndcls; }
+			operator WNDCLASSEX* () { return &wndcls; }
+			operator const WNDCLASSEX* () const { return &wndcls; }
 
 			void register_class() {
-				m_atom = ::RegisterClassEx(&internal);
+				m_atom = ::RegisterClassEx(&wndcls);
 				if ( m_atom == 0 )
 					throw register_failed();
 			}
 			void unregister(HINSTANCE hInstance) {
-				if ( m_atom ) if ( ::UnregisterClass(internal.lpszClassName, hInstance) ) m_atom = 0;
+				if ( m_atom ) if ( ::UnregisterClass(wndcls.lpszClassName, hInstance) ) m_atom = 0;
 			}
 
-			const char* get_class_name() const { return internal.lpszClassName; }
+			const char* get_class_name() const { return wndcls.lpszClassName; }
 		};
 	}
 }
 
-#endif//__github_com_myun2__bacon__window_class_HPP__
+#endif//__github_com_myun2__bouse__window_class_HPP__

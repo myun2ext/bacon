@@ -1,14 +1,14 @@
-#ifndef __github_com_myun2__bacon__window__window_HPP__
-#define __github_com_myun2__bacon__window__window_HPP__
+#ifndef __github_com_myun2__bouse__window__window_HPP__
+#define __github_com_myun2__bouse__window__window_HPP__
 
 #include <windows.h>
-#include "myun2/bacon/window/window_class.hpp"
-#include "myun2/bacon/window/window_proc.hpp"
-#include "myun2/bacon/window/message_loop.hpp"
+#include "bouse/window/window_class.hpp"
+#include "bouse/window/window_proc.hpp"
+#include "bouse/window/message_loop.hpp"
 
 namespace myun2
 {
-	namespace bacon
+	namespace bouse
 	{
 		class window
 		{
@@ -59,4 +59,4 @@ namespace myun2
 	}
 }
 
-#endif//__github_com_myun2__bacon__window__window_HPP__
+#endif//__github_com_myun2__bouse__window__window_HPP__

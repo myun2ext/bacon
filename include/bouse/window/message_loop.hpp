@@ -1,11 +1,11 @@
-#ifndef __github_com_myun2__bacon__message_loop_HPP__
-#define __github_com_myun2__bacon__message_loop_HPP__
+#ifndef __github_com_myun2__bouse__message_loop_HPP__
+#define __github_com_myun2__bouse__message_loop_HPP__
 
 #include <windows.h>
 
 namespace myun2
 {
-	namespace bacon
+	namespace bouse
 	{
 		class message_loop
 		{
@@ -23,4 +23,4 @@ namespace myun2
 	}
 }
 
-#endif//__github_com_myun2__bacon__message_loop_HPP__
+#endif//__github_com_myun2__bouse__message_loop_HPP__
